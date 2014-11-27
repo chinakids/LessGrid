@@ -1,0 +1,256 @@
+@charset "utf-8";
+/* css文件必须申明文本编码，与html保持一致，目前仅推荐UTF-8 */
+/* *在保证兼容性的前提下劲量减少使用css hack.
+*要知道每一次hack都有可能成为未来的BUG
+*本文件遵循less编码规则
+*less文件只做测试/开发用
+*最终版本请自行编译 
+*/
+/* *变量声明 */
+@main-width: 1200px;
+@max-width:(@min-width+10px)*12;
+@min-width:floor((@main-width - 120px)/12) ;
+@wrap-width:@max-width +10px;
+@font-size: 12px ; @font-size-small: 10px ; @font-size-large: 14px ;
+@main-bgcolor: #F6F6F6 ;
+@main-color: #333 ;
+@main-family:"Microsoft YaHei", verdana;
+@a-color: #4a4a4a ;
+@a-hover-color: #FF5926 ;
+@radius: 5px ;
+@shadow-mode: outset ; @shadow-x: 3px ; @shadow-y: 3px ; @shadow-fuzzy: 3px ; @shadow-expand: 1px ; @shadow-color: #fff ;
+@border-px:1px; @border-style:solid; @border-color:#acacac; @border-focus: #35cd92 ;
+@button-color: #fff ; @button-bgcolor: green ;
+@padding-top:10px; @padding-right:10px; @padding-bottom:10px;@padding-left:10px;
+
+/* *重置需要使用的标签，避免自身属性造成在不同浏览器的排版问题
+*设置需要的标签内边距和外边距为0，仅添加需要的标签，不建议使用星号（*）代替，以下为示例 */
+body, 
+ul {
+	margin: 0;
+	padding: 0;
+}
+p {
+	margin: 10px 0;
+}
+ul,
+li {
+	list-style-type: none;
+	list-style-position: inside;
+}
+body {
+	background: @main-bgcolor;
+	font-family: @main-family;
+	font-size: @font-size-large;
+	color: @main-color;
+}
+a {
+	text-decoration: none;
+	color: @a-color;
+	transition: 0.2s;
+}
+a:hover {
+	color: @a-hover-color;
+}
+img {
+	border: none;
+}
+.f_l {
+	float: left;
+}
+.f_r {
+	float: right;
+}
+.cf:before,
+.cf:after {
+	content: "";
+	display: table;
+}
+.cf:after {
+	clear: both;
+}
+.cf {
+	zoom: 1;
+}
+.ellipsis {
+	display: block;
+	word-break: keep-all;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.break_word {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.keep_all {
+	word-break: keep-all;
+	white-space: nowrap;
+}
+input.txt,
+textarea.txt {
+	.border(@border-px,@border-style,@border-color:#e2e2e2);
+	.radius(@radius:3px);
+	padding: 8px;
+	outline: none;
+	resize: none;
+}
+input.txt:focus,
+textarea.txt:focus{
+	border-color:@border-focus;
+}
+textarea {
+	resize: none;
+}
+table {
+	border-collapse: collapse;
+}
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+	border: none;
+	padding: 0;
+}
+.radius(@radius){
+	-moz-border-radius: @radius ;
+	-webkit-border-radius: @radius ;
+	-o-border-radius: @radius ;
+	border-radius: @radius ;
+}
+.shadow(@shadow-mode,@shadow-x,@shadow-y,@shadow-fuzzy,@shadow-expand,@shadow-color){
+	//投影方式 X轴偏移量 Y轴偏移量 阴影模糊半径 阴影扩展半径 阴影颜色
+	-moz-box-shadow: @shadow-mode @shadow-x @shadow-y @shadow-fuzzy @shadow-expand @shadow-color;
+	-webkit-box-shadow: @shadow-mode @shadow-x @shadow-y @shadow-fuzzy @shadow-expand @shadow-color;
+	box-shadow: @shadow-mode @shadow-x @shadow-y @shadow-fuzzy @shadow-expand @shadow-color;
+} 
+.border(@border-px,@border-style,@border-color){
+	border:@border-px @border-style @border-color;
+}
+.button(@button-color,@radius,@button-bgcolor,@border-px,@border-style,@border-color){
+	color: @button-color ;
+	.radius(@radius);
+	background-color: @button-bgcolor ;
+	.border(@border-px,@border-style,@border-color);
+	line-height: 30px;
+	padding:5px 10px;
+	text-align: center; 
+}
+.padding(@padding-top,@padding-right,@padding-bottom,@padding-left){
+	padding: @padding-top @padding-right @padding-bottom @padding-left;
+}
+/* ========================================全站通用样式==================================== */
+.wrap {
+	width:@max-width;
+	margin: 0 auto;
+	height: auto;
+}
+.span-width (@border-px,@border-style,@border-color,@width-n) when (@border-px > 0) {
+	width:(@min-width + 10px) * @width-n - 10px - @padding-left - @padding-right - @border-px * 2;
+	.border(@border-px,@border-style,@border-color);
+}
+.span-width (@border-px,@border-style,@border-color,@width-n) when (@border-px <= 0) {
+	width:(@min-width + 10px) * @width-n - 10px - @padding-left - @padding-right;
+	.border(@border-px,@border-style,@border-color);
+}
+.span-width (@border-px,@border-style,@border-color,@width-n){
+	height: auto;
+}
+.span1{
+	@width-n:1;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span2{
+	@width-n:2;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span3{
+	@width-n:3;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span4{
+	@width-n:4;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span5{
+	@width-n:5;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span6{
+	@width-n:6;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span7{
+	@width-n:7;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span8{
+	@width-n:8;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span9{
+	@width-n:9;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span10{
+	@width-n:10;
+	.f_l; 
+	.span-width(@border-px:10px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span11{
+	@width-n:11;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+.span12{
+	@width-n:12;
+	.f_l; 
+	.span-width(@border-px:1px,@border-style,@border-color,@width-n);
+	margin: 5px;
+	//background-color: @a-hover-color ;
+	.padding(@padding-top,@padding-right,@padding-bottom,@padding-left);
+}
+
+

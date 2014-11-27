@@ -1,0 +1,203 @@
+@charset "utf-8";
+/* css文件必须申明文本编码，与html保持一致，目前仅推荐UTF-8 */
+/* *在保证兼容性的前提下劲量减少使用css hack.
+*要知道每一次hack都有可能成为未来的BUG
+*本文件遵循less编码规则
+*less文件只做测试/开发用
+*最终版本请自行编译 
+*/
+/* *变量声明 */
+/* *重置需要使用的标签，避免自身属性造成在不同浏览器的排版问题
+*设置需要的标签内边距和外边距为0，仅添加需要的标签，不建议使用星号（*）代替，以下为示例 */
+body,
+ul {
+  margin: 0;
+  padding: 0;
+}
+p {
+  margin: 10px 0;
+}
+ul,
+li {
+  list-style-type: none;
+  list-style-position: inside;
+}
+body {
+  background: #f6f6f6;
+  font-family: "Microsoft YaHei", verdana;
+  font-size: 14px;
+  color: #333333;
+}
+a {
+  text-decoration: none;
+  color: #4a4a4a;
+  transition: 0.2s;
+}
+a:hover {
+  color: #ff5926;
+}
+img {
+  border: none;
+}
+.f_l {
+  float: left;
+}
+.f_r {
+  float: right;
+}
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.cf {
+  zoom: 1;
+}
+.ellipsis {
+  display: block;
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.break_word {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.keep_all {
+  word-break: keep-all;
+  white-space: nowrap;
+}
+input.txt,
+textarea.txt {
+  border: 1px solid #e2e2e2;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding: 8px;
+  outline: none;
+  resize: none;
+}
+input.txt:focus,
+textarea.txt:focus {
+  border-color: #35cd92;
+}
+textarea {
+  resize: none;
+}
+table {
+  border-collapse: collapse;
+}
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+/* ========================================全站通用样式==================================== */
+.wrap {
+  width: 1200px;
+  margin: 0 auto;
+  height: auto;
+}
+.span1 {
+  float: left;
+  width: 68px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span2 {
+  float: left;
+  width: 168px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span3 {
+  float: left;
+  width: 268px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span4 {
+  float: left;
+  width: 368px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span5 {
+  float: left;
+  width: 468px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span6 {
+  float: left;
+  width: 568px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span7 {
+  float: left;
+  width: 668px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span8 {
+  float: left;
+  width: 768px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span9 {
+  float: left;
+  width: 868px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span10 {
+  float: left;
+  width: 950px;
+  border: 10px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span11 {
+  float: left;
+  width: 1068px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.span12 {
+  float: left;
+  width: 1168px;
+  border: 1px solid #acacac;
+  height: auto;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+}
